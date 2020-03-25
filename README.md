@@ -35,7 +35,7 @@ j56c5kig56714zbbbk0rbc7aj     node3               Ready               Active    
 curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
 ```
 
-- Clone the reposity on each node.
+- Clone the reposity to each node.
 
 ```
 #create a new folder
