@@ -89,6 +89,6 @@ root@node2:/cluster# ./wsrep_service.sh status
 ```
 root@node1:/cluster# ./wsrep_service.sh stop
 root@node1:/cluster# ./wsrep_service.sh start 1 2
-After a few seconds, check again the status:
+#After a few seconds, check again the status:
 root@node1:/cluster# ./wsrep_service.sh status
 ```
