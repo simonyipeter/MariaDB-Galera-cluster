@@ -4,6 +4,7 @@ MariaDB Galera multi-master database cluster install script
 # Install
 - Setup the docker based on the offical description https://docs.docker.com/install/linux/docker-ce/ubuntu/
 - Create a docker swarm as root, a minimum of 3 nodes is required, node1, node2, node3
+
 ```
 #init the swarm:
 root@node1:/# docker swarm init
@@ -27,8 +28,15 @@ j56c5kig56714zbbbk0rbc7aj     node3               Ready               Active    
 
 
 ```
+
 - Download the Docker compose: https://docs.docker.com/compose/install/
+
 ```
 curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
 ```
-- 
+
+- Clone the reposity
+
+```
+curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
+```
