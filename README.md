@@ -3,7 +3,7 @@ MariaDB Galera multi-master database cluster install script
 
 # Install
 - Setup the docker based on the offical description https://docs.docker.com/install/linux/docker-ce/ubuntu/
-- Create a docker swarm as root, a minimum of 3 nodes is required, node1, node2, node3
+- Create a docker swarm as root, a minimum of 3 nodes is required. (in this tutorial: node1, node2, node3 )
 
 ```
 #init the swarm:
