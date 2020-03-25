@@ -35,8 +35,60 @@ j56c5kig56714zbbbk0rbc7aj     node3               Ready               Active    
 curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
 ```
 
-- Clone the reposity
+- Clone the reposity on each node.
 
 ```
-curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
+#create a new folder
+mkdir /cluster && cd /cluster
+#download the reposity
+curl -L "https://raw.githubusercontent.com/simonyipeter/MariaDB-Galera-cluster/master/wsrep_service.sh" -o wsrep_service.sh && chmod +x wsrep_service.sh
+```
+
+#Configuration
+- Edit the wsrep_service.sh file with your best text editor:
+
+```
+mcedit wsrep_service.sh
+```
+
+- Modify the GALERA_DATA_ROOT_FOLDER variable, the cluster will store database files here. GALERA_DB will be the first database in the cluster and the password and the root password will be stored in the GALERA_PWD variable.
+
+- Start the first container on any node, it will initial the cluster. the container name will mariadb-galera-0
+Each container will use this ports: 3306/tcp 4444/tcp and 4567-4568/tcp, so before start container, stop the mysql server on the host or modify the port number in the wsrep_service.sh Example: -p 3306:3306 -> -p 3307:3306 
+
+```
+root@node1:/cluster# ./wsrep_service.sh bootstrap
+```
+
+- On the next node clone the reposity and join to the cluster, mariadb-galera-2 will be the container name which joint to the mariadb-galera-0
+
+```
+root@node2:/cluster# ./wsrep_service.sh start 2 0
+# and the next node join to mariadb-galera-2
+root@node3:/cluster# ./wsrep_service.sh start 3 2
+```
+
+- Check the cluster state on any node:
+
+```
+root@node2:/cluster# ./wsrep_service.sh status
++---------------------------+----------------+
+| VARIABLE_NAME             | VARIABLE_VALUE |
++---------------------------+----------------+
+| WSREP_CLUSTER_SIZE        | 3              |
+| WSREP_CLUSTER_STATUS      | Primary        |
+| WSREP_EVS_DELAYED         |                |
+| WSREP_LOCAL_STATE_COMMENT | Synced         |
+| WSREP_READY               | ON             |
++---------------------------+----------------+
+
+```
+
+- Let's destroy and the first container on node1 and create a new one:
+
+```
+root@node1:/cluster# ./wsrep_service.sh stop
+root@node1:/cluster# ./wsrep_service.sh start 1 2
+After a few seconds, check again the status:
+root@node1:/cluster# ./wsrep_service.sh status
 ```
