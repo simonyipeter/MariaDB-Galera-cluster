@@ -44,7 +44,7 @@ mkdir /cluster && cd /cluster
 curl -L "https://raw.githubusercontent.com/simonyipeter/MariaDB-Galera-cluster/master/wsrep_service.sh" -o wsrep_service.sh && chmod +x wsrep_service.sh
 ```
 
-#Configuration
+# Configuration
 - Edit the wsrep_service.sh file with your best text editor:
 
 ```
