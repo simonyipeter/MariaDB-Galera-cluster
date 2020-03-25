@@ -9,7 +9,7 @@ MariaDB Galera multi-master database cluster install script
 #init the swarm:
 root@node1:/# docker swarm init
 
-#generate manager token and copy token to the node2 and node3
+#generate manager token and copy the token to the node2 and node3
 root@node1:/# docker swarm join-token manager
 To add a manager to this swarm, run the following command:
    docker swarm join --token SWMTKN-1-0fo48mwadacjoz01iqnqnv9qiqkjh9ipzhct6ip2f63pagrk5o-36ybigvk9mkfoag1ph266o4x4 192.168.0.1:2377
