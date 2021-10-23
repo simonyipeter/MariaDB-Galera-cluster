@@ -26,7 +26,7 @@ docker run -d --name $GALERA_NODE_NAME-0 --net=pxc-network \
 ;;
 
 start)
-mkdir -p $GALERA_DATA_ROOT_FOLDER/data
+mkdir -p $GALERA_DATA_ROOT_FOLDER/data chmod 777 -R $GALERA_DATA_ROOT_FOLDER/data
 docker run -d --name $GALERA_NODE_NAME-$2 --net=pxc-network \
   -e MARIADB_GALERA_CLUSTER_NAME=galera_cluster \
   -e MARIADB_GALERA_CLUSTER_ADDRESS="gcomm://$GALERA_NODE_NAME-$3" \
