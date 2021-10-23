@@ -5,7 +5,7 @@ GALERA_PWD=vAqC7wdtjRcsdDG
 
 case $1 in
         bootstrap)
-mkdir -p $GALERA_DATA_ROOT_FOLDER/data
+mkdir -p $GALERA_DATA_ROOT_FOLDER/data && chmod 777 -R $GALERA_DATA_ROOT_FOLDER/data
 docker network create -d overlay --attachable pxc-network
 docker run -d --name $GALERA_NODE_NAME-0 --net=pxc-network \
   -e MARIADB_GALERA_CLUSTER_BOOTSTRAP=yes \
