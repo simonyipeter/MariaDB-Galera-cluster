@@ -21,7 +21,7 @@ docker run -d --name $GALERA_NODE_NAME-0 --net=pxc-network \
   -p 4567:4567 \
   -p 4568:4568 \
   -v $GALERA_DATA_ROOT_FOLDER/data:/bitnami/mariadb \
-  -v $GALERA_DATA_ROOT_FOLDER/conf:/opt/bitnami/mariadb/conf/bitnami \
+  -v $GALERA_DATA_ROOT_FOLDER/conf:/opt/bitnami/mariadb/conf \
   bitnami/mariadb-galera:latest
 ;;
 
@@ -41,7 +41,7 @@ docker run -d --name $GALERA_NODE_NAME-$2 --net=pxc-network \
   -p 4567:4567 \
   -p 4568:4568 \
   -v $GALERA_DATA_ROOT_FOLDER/data:/bitnami/mariadb \
-  -v $GALERA_DATA_ROOT_FOLDER/conf:/opt/bitnami/mariadb/conf/bitnami \
+  -v $GALERA_DATA_ROOT_FOLDER/conf:/opt/bitnami/mariadb/conf \
   --restart unless-stopped \
   bitnami/mariadb-galera:latest
 ;;
