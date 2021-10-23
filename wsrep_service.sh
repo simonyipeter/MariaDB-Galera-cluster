@@ -1,5 +1,5 @@
 GALERA_NODE_NAME=mariadb-galera
-GALERA_DATA_ROOT_FOLDER=/cluster
+GALERA_DATA_ROOT_FOLDER=./db_data
 GALERA_DB=wordpress
 GALERA_PWD=vAqC7wdtjRcsdDG
 
