@@ -1,10 +1,11 @@
 GALERA_NODE_NAME=mariadb-galera
-GALERA_DATA_ROOT_FOLDER=./db_data
+GALERA_DATA_ROOT_FOLDER=`pwd`/db_data
 GALERA_DB=wordpress
 GALERA_PWD=vAqC7wdtjRcsdDG
 
 case $1 in
         bootstrap)
+mkdir -p $GALERA_DATA_ROOT_FOLDER/data
 docker network create -d overlay --attachable pxc-network
 docker run -d --name $GALERA_NODE_NAME-0 --net=pxc-network \
   -e MARIADB_GALERA_CLUSTER_BOOTSTRAP=yes \
@@ -25,7 +26,7 @@ docker run -d --name $GALERA_NODE_NAME-0 --net=pxc-network \
 ;;
 
 start)
-
+mkdir -p $GALERA_DATA_ROOT_FOLDER/data
 docker run -d --name $GALERA_NODE_NAME-$2 --net=pxc-network \
   -e MARIADB_GALERA_CLUSTER_NAME=galera_cluster \
   -e MARIADB_GALERA_CLUSTER_ADDRESS="gcomm://$GALERA_NODE_NAME-$3" \
