@@ -58,5 +58,16 @@ docker exec -t $(docker ps -f name=$GALERA_NODE_NAME* -q) mysql -uroot -p$GALERA
 -e"SELECT * FROM information_schema.global_status WHERE variable_name IN ('WSREP_CLUSTER_STATUS','WSREP_LOCAL_STATE_COMMENT','WSREP_CLUSTER_SIZE','WSREP_EVS_DELAYED','WSREP_READY');"
 ;;
 
+backup)
+mkdir $GALERA_BACKUP_FOLDER
+NODE_NAME=$(docker ps -f name=$GALERA_NODE_NAME* -q)
+for DB in $( docker exec -it $NODE_NAME mysql -uroot -p$GALERA_PWD -e 'show databases' -s --skip-column-names |sed 's/\r$//' ); do
+    docker exec -it $NODE_NAME mysqldump -u root -p$GALERA_PWD $DB | gzip > "$GALERA_BACKUP_FOLDER/$DB.sql.gz";
+    echo $DB;
+done
+
+;;
+
+
 esac
 
