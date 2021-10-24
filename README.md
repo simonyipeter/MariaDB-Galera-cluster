@@ -94,8 +94,8 @@ root@node1:/cluster# ./wsrep_service.sh status
 ```
 
 # Backup
-Easy to create backup from all database: 
+Easy to create backup from all databases: 
 ```
-root@node2:/cluster# ./wsrep_service.sh backup
+root@node1:/cluster# ./wsrep_service.sh backup
 ```
-The backup files wil located in the db_bkp folder
+The backup files will be located in the db_bkp folder
