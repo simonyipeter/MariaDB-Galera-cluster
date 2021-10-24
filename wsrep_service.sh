@@ -54,7 +54,7 @@ docker rm $(docker ps -a -f name=$GALERA_NODE_NAME* -q)
 
 status)
 docker ps -a | grep -i $(docker ps -f name=$GALERA_NODE_NAME* -q)
-docker exec -it $(docker ps -f name=$GALERA_NODE_NAME* -q) mysql -uroot -p$GALERA_PWD \
+docker exec -t $(docker ps -f name=$GALERA_NODE_NAME* -q) mysql -uroot -p$GALERA_PWD \
 -e"SELECT * FROM information_schema.global_status WHERE variable_name IN ('WSREP_CLUSTER_STATUS','WSREP_LOCAL_STATE_COMMENT','WSREP_CLUSTER_SIZE','WSREP_EVS_DELAYED','WSREP_READY');"
 ;;
 
