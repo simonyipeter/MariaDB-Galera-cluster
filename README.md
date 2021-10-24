@@ -92,3 +92,10 @@ root@node1:/cluster# ./wsrep_service.sh start 1 2
 #After a few seconds, check again the status:
 root@node1:/cluster# ./wsrep_service.sh status
 ```
+
+# Backup
+Easy to create backup from all database: 
+```
+root@node2:/cluster# ./wsrep_service.sh backup
+```
+The backup files wil located in the db_bkp folder
